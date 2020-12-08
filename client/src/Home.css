@@ -1,0 +1,31 @@
+
+
+.Home {
+  width: 100%;
+  display: flex;
+  padding: 25px;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.button_stack > a > button {
+  background-color: #128c7e;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 10px 25px;
+  border-radius: 2px;
+  margin: 12.5px;
+  border: none;
+  transition: 0.2s ease-in-out;
+}
+
+.button_stack > a > button:hover {
+  background-color: #075e54;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+  box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.4);
+}

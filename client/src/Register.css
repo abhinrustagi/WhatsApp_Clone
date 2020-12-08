@@ -1,0 +1,17 @@
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: transparent;
+}
+
+.register > h2 {
+  margin-bottom: 0;
+}
+
+
