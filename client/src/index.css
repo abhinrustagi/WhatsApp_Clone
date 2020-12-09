@@ -41,13 +41,29 @@ body {
   margin-bottom: 25px;
 }
 
-.logo_box > h1 {
+.logo_box > div > h1 {
   margin: 0;
-  margin-left: 5px;
-  text-align: center;
+}
+
+.logo_box > div > p {
+  margin-bottom: 0;
+  margin-top: 2px;
+  font-weight: lighter;
+}
+.logo_box > div {
+  margin-left: 3px;
 }
 
 .logo_link {
   color: black;
   text-decoration: none;
+}
+
+.error {
+  margin: 1.5px 0;
+  color: #fd3a69;
+}
+
+.form_errors {
+  text-align: left;
 }

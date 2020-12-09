@@ -18,6 +18,14 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
+  nanoid: {
+    type: String,
+    required: true,
+  },
+  avatar: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

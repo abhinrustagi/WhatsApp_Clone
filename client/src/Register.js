@@ -3,6 +3,7 @@ import "./Register.css";
 import { Link } from "react-router-dom";
 import axios from "./axios";
 import { useHistory } from "react-router-dom";
+import Logo from "./Logo";
 
 function Register() {
   const history = useHistory();
@@ -13,7 +14,10 @@ function Register() {
     name: "",
     email: "",
     password2: "",
+    gender: "",
   });
+
+  const [formErrors, changeFormError] = useState([]);
 
   const handleChange = (e) => {
     changeText({ ...inputText, [e.target.name]: e.target.value });
@@ -22,21 +26,24 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await axios.post("/api/users/register", inputText);
-    history.push("/chat-menu");
+    if (response.data.errors) {
+      changeFormError(response.data.errors);
+      console.log(formErrors);
+    } else {
+      history.push("/chat-menu");
+    }
   };
 
   return (
     <div className="register">
       <Link to="/" className="logo_link">
-        <div className="logo_box">
-          <img
-            src="https://saurabhsawant.in/wp-content/uploads/2018/05/latest-clipart-for-whatsapp-10.png"
-            alt="..."
-            className="logo"
-          />
-          <h1>WhatsApp Messenger</h1>
-        </div>
+        <Logo />
       </Link>
+      <div className="form_errors">
+        {formErrors.map((error) => (
+          <p className="error">{error}</p>
+        ))}
+      </div>
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div className="input_group">

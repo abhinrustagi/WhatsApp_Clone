@@ -12,11 +12,14 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cartoon-avatar": "^1.0.2",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.5",
+    "nanoid": "^3.1.20",
+    "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "socket.io": "^3.0.4",
     "validator": "^13.5.1"

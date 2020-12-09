@@ -3,6 +3,12 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const { customAlphabet } = require("nanoid");
+const nanoid = customAlphabet(
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz#@",
+  12
+);
+var toonavatar = require("cartoon-avatar");
 
 // Load input validation
 const validateRegisterInput = require("../../validation/register");
@@ -21,18 +27,20 @@ router.post("/register", (req, res) => {
 
   // Check validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.json({ isValid, errors });
   }
 
   User.findOne({ mobile: req.body.mobile }).then((user) => {
     if (user) {
-      return res.status(400).json({ mobile: "Mobile Number already exists" });
+      return res.json({ isValid, errors: ["Mobile Number already exists"] });
     } else {
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
         password: req.body.password,
         mobile: req.body.mobile,
+        nanoid: nanoid(),
+        avatar: toonavatar.generate_avatar(),
       });
 
       // Hash password before saving in database
@@ -60,7 +68,7 @@ router.post("/login", (req, res) => {
 
   // Check validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.json({ isValid, errors });
   }
 
   const mobile = req.body.mobile;
@@ -70,9 +78,7 @@ router.post("/login", (req, res) => {
   User.findOne({ mobile }).then((user) => {
     // Check if user exists
     if (!user) {
-      return res
-        .status(404)
-        .json({ mobilenotfound: "Mobile Number not found" });
+      return res.json({ errors: ["Mobile Number not found"] });
     }
 
     // Check password
@@ -100,9 +106,7 @@ router.post("/login", (req, res) => {
           }
         );
       } else {
-        return res
-          .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
+        return res.json({ errors: ["Password incorrect"] });
       }
     });
   });
