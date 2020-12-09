@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import axios from "./axios";
+import { useHistory } from "react-router-dom";
 
 function Login() {
+  const history = useHistory();
   const [inputText, changeText] = useState({ mobile: null, password: "" });
 
   const handleChange = (e) => {
@@ -12,9 +14,8 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputText);
     const response = await axios.post("/api/users/login", inputText);
-    console.log(response.data);
+    history.push("/chat-menu");
   };
 
   return (

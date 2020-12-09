@@ -4,6 +4,7 @@ import Home from "./Home";
 import Box from "./Box";
 import Login from "./Login";
 import Register from "./Register";
+import ChatMenu from "./ChatMenu";
 
 function App() {
   return (
@@ -18,6 +19,9 @@ function App() {
           </Route>
           <Route exact path="/register">
             <Register />
+          </Route>
+          <Route exact path="/chat-menu">
+            <ChatMenu />
           </Route>
         </Switch>
       </Box>

@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import "./Register.css";
 import { Link } from "react-router-dom";
 import axios from "./axios";
+import { useHistory } from "react-router-dom";
 
 function Register() {
+  const history = useHistory();
+
   const [inputText, changeText] = useState({
     mobile: "",
     password: "",
@@ -18,9 +21,8 @@ function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(inputText);
     const response = await axios.post("/api/users/register", inputText);
-    console.log(response);
+    history.push("/chat-menu");
   };
 
   return (

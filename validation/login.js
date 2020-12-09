@@ -10,7 +10,7 @@ module.exports = function validateLoginInput(data) {
 
   // Email checks
   if (Validator.isEmpty(data.mobile)) {
-    errors.email = "Mobile Number field is required";
+    errors.mobile = "Mobile Number field is required";
   } else if (!Validator.isMobilePhone(data.mobile)) {
     errors.mobile = "Mobile Number is invalid";
   }
