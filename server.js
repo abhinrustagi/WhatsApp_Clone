@@ -6,6 +6,11 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const users = require("./routes/api/users");
 const passport = require("passport");
+const io = socketio(http, {
+  cors: {
+    origin: "*",
+  },
+});
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -19,6 +24,18 @@ mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log("MongoDB successfully connected"))
   .catch((err) => console.log(err));
+
+io.on("connection", (socket) => {
+  console.log(socket.id);
+  socket.on("joinRoom", (roomName) => {
+    socket.join(roomName);
+    console.log("joined");
+  });
+
+  socket.on("disconnect", () => {
+    console.log("Disconnected");
+  });
+});
 
 app.use(passport.initialize());
 

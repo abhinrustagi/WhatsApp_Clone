@@ -12,7 +12,7 @@ function Login() {
   const history = useHistory();
   const [inputText, changeText] = useState({ mobile: null, password: "" });
 
-  const [{ user }, dispatch] = useStateValue();
+  const [{ user, socket }, dispatch] = useStateValue();
 
   const handleChange = (e) => {
     changeText({ ...inputText, [e.target.name]: e.target.value });
@@ -23,6 +23,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     changeFormError([]);
+
     const response = await axios.post("/api/users/login", inputText);
     if (response.data.errors) {
       changeFormError(response.data.errors);
@@ -34,7 +35,7 @@ function Login() {
       setAuthToken(token);
 
       const decoded = jwt_decode(token);
-
+      dispatch({ type: "OPEN_SOCKET" });
       dispatch({ type: "SET_USER", user: decoded });
       history.push("/chat-menu");
     }
