@@ -1,22 +1,26 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { Link } from "react-router-dom";
+import axios from "./axios";
 
 function Register() {
   const [inputText, changeText] = useState({
-    mobile: null,
+    mobile: "",
     password: "",
     name: "",
     email: "",
+    password2: "",
   });
 
   const handleChange = (e) => {
     changeText({ ...inputText, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputText);
+    const response = await axios.post("/api/users/register", inputText);
+    console.log(response);
   };
 
   return (
@@ -46,7 +50,7 @@ function Register() {
         </div>
         <div className="input_group">
           <input
-            type="number"
+            type="text"
             name="mobile"
             id=""
             onChange={handleChange}
@@ -73,6 +77,16 @@ function Register() {
             onChange={handleChange}
           />
           <label>Password</label>
+        </div>
+        <div className="input_group">
+          <input
+            type="password"
+            name="password2"
+            id=""
+            required
+            onChange={handleChange}
+          />
+          <label>Confirm Password</label>
         </div>
         <button className="form_button" type="submit">
           Register

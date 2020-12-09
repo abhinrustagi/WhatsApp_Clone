@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
+import axios from "./axios";
 
 function Login() {
   const [inputText, changeText] = useState({ mobile: null, password: "" });
@@ -9,9 +10,11 @@ function Login() {
     changeText({ ...inputText, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(inputText);
+    const response = await axios.post("/api/users/login", inputText);
+    console.log(response.data);
   };
 
   return (
@@ -31,7 +34,7 @@ function Login() {
       <form onSubmit={handleSubmit}>
         <div className="input_group">
           <input
-            type="number"
+            type="text"
             name="mobile"
             id=""
             onChange={handleChange}
