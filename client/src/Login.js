@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import axios from "./axios";
 import { useHistory } from "react-router-dom";
 import Logo from "./Logo";
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./setAuthToken";
+import { useStateValue } from "./StateProvider";
 
 function Login() {
   const history = useHistory();
   const [inputText, changeText] = useState({ mobile: null, password: "" });
+
+  const [{ user }, dispatch] = useStateValue();
 
   const handleChange = (e) => {
     changeText({ ...inputText, [e.target.name]: e.target.value });
@@ -23,7 +28,14 @@ function Login() {
       changeFormError(response.data.errors);
       console.log(formErrors);
     } else {
-      console.log("Ho gaya");
+      const { token } = response.data;
+      localStorage.setItem("jwtToken", token);
+
+      setAuthToken(token);
+
+      const decoded = jwt_decode(token);
+
+      dispatch({ type: "SET_USER", user: decoded });
       history.push("/chat-menu");
     }
   };

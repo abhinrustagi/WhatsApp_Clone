@@ -89,6 +89,10 @@ router.post("/login", (req, res) => {
         const payload = {
           id: user.id,
           name: user.name,
+          email: user.email,
+          nanoid: user.nanoid,
+          mobile: user.mobile,
+          avatar: user.avatar,
         };
 
         // Sign token
@@ -103,6 +107,7 @@ router.post("/login", (req, res) => {
               success: true,
               token: "Bearer " + token,
             });
+            console.log("Sent");
           }
         );
       } else {

@@ -1,0 +1,52 @@
+.chatlist {
+  flex: 0.3;
+  border-right: #e6e6e6 1px solid;
+  height: 100%;
+}
+
+.user_header {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: #e6e6e6 solid 1px;
+  background-color: #ededed;
+}
+
+.user_header > img {
+  border-radius: 100%;
+  width: 40px;
+  object-fit: contain;
+}
+
+.user_header > button {
+  font-size: 1.3rem;
+  color: #bbbbbb;
+  border: none;
+  background-color: transparent;
+  transition: 0.1s ease-in-out;
+}
+
+.user_header > button:hover {
+  color: #aaaaaa;
+}
+
+.search_bar {
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #f6f6f6;
+}
+
+.search_bar > input {
+  font-size: 0.9rem;
+  padding: 10px 15px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 15px;
+}
+
+.search_bar > input:focus,
+.search_bar > input:active {
+  border: none;
+}

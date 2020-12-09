@@ -12,9 +12,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-weight: 400;
-  background-image: url(https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png);
-  background-repeat: repeat;
-  background-size: initial;
+  background: rgb(0, 150, 136);
+  background: linear-gradient(
+    rgba(0, 150, 136, 1) 20%,
+    rgba(213, 219, 216, 1) 20%
+  );
   height: 100vh;
   box-sizing: border-box;
 }

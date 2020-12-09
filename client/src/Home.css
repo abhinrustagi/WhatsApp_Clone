@@ -1,10 +1,9 @@
-
-
 .Home {
   width: 100%;
   display: flex;
   padding: 25px;
   height: 100%;
+  margin: 30px auto;
   align-items: center;
   justify-content: center;
   flex-direction: column;
