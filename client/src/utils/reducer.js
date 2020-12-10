@@ -1,16 +1,7 @@
-import io from "socket.io-client";
-
-const socket = io("http://localhost:8888/", {
-  autoConnect: false,
-  cors: {
-    origin: "*",
-  },
-});
-
 export const initialState = {
   user: null,
   chats: [],
-  socket: null,
+  message: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -19,12 +10,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.user,
-      };
-    case "OPEN_SOCKET":
-      socket.open();
-      return {
-        ...state,
-        socket: socket,
       };
     default:
       return state;

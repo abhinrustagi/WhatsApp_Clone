@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Home from "./Home";
-import Box from "./Box";
-import Login from "./Login";
-import Register from "./Register";
-import ChatMenu from "./ChatMenu";
+import Home from "./pages/Home";
+import Box from "./components/Box";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ChatMenu from "./components/ChatMenu";
 
 function App() {
   return (

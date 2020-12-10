@@ -69,3 +69,7 @@ body {
 .form_errors {
   text-align: left;
 }
+
+button {
+  cursor: pointer;
+}

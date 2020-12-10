@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import "./Register.css";
+import "./styles/Register.css";
 import { Link } from "react-router-dom";
-import axios from "./axios";
+import axios from "../utils/axios";
 import { useHistory } from "react-router-dom";
-import Logo from "./Logo";
+import Logo from "../components/Logo";
+import { useStateValue } from "../utils/StateProvider";
 
 function Register() {
   const history = useHistory();
+  const [{ user, socket }, dispatch] = useStateValue();
 
   const [inputText, changeText] = useState({
     mobile: "",
@@ -30,6 +32,8 @@ function Register() {
       changeFormError(response.data.errors);
       console.log(formErrors);
     } else {
+      dispatch({ type: "OPEN_SOCKET" });
+      dispatch({ type: "SET_USER", user: response.data });
       history.push("/chat-menu");
     }
   };

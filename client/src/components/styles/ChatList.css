@@ -22,9 +22,11 @@
 .user_header > button {
   font-size: 1.3rem;
   color: #bbbbbb;
-  border: none;
+  border: 1px solid #aaa;
   background-color: transparent;
   transition: 0.1s ease-in-out;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 .user_header > button:hover {
@@ -35,18 +37,30 @@
   padding: 10px;
   box-sizing: border-box;
   background-color: #f6f6f6;
+  display: flex;
 }
 
 .search_bar > input {
   font-size: 0.9rem;
-  padding: 10px 15px;
-  width: 100%;
+  padding: 10px 10px;
+  flex: 0.9;
   box-sizing: border-box;
   border: none;
-  border-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
 }
 
 .search_bar > input:focus,
 .search_bar > input:active {
   border: none;
+}
+
+.search_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-bottom-left-radius: 15px;
+  border-top-left-radius: 15px;
+  flex: 0.1;
 }

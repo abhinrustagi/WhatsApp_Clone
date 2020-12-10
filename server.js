@@ -32,6 +32,10 @@ io.on("connection", (socket) => {
     console.log("joined");
   });
 
+  socket.on("message", (message) => {
+    console.log(message);
+  });
+
   socket.on("disconnect", () => {
     console.log("Disconnected");
   });
@@ -43,6 +47,11 @@ app.use(passport.initialize());
 require("./config/passport")(passport);
 
 app.use("/api/users", users);
+
+app.get("/api/users/chats", (req, res) => {
+  console.log(req.body);
+  res.json("None");
+});
 
 http.listen(process.env.PORT || 8888, () => {
   console.log("Server started.");

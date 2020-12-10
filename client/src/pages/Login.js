@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import "./Login.css";
+import "./styles/Login.css";
 import { Link } from "react-router-dom";
-import axios from "./axios";
+import axios from "../utils/axios";
 import { useHistory } from "react-router-dom";
-import Logo from "./Logo";
+import Logo from "../components/Logo";
 import jwt_decode from "jwt-decode";
-import setAuthToken from "./setAuthToken";
-import { useStateValue } from "./StateProvider";
+import setAuthToken from "../utils/setAuthToken";
+import { useStateValue } from "../utils/StateProvider";
+import { openSocket } from "../utils/emitters/socketIO";
 
 function Login() {
   const history = useHistory();
   const [inputText, changeText] = useState({ mobile: null, password: "" });
 
-  const [{ user, socket }, dispatch] = useStateValue();
+  const [{ user }, dispatch] = useStateValue();
 
   const handleChange = (e) => {
     changeText({ ...inputText, [e.target.name]: e.target.value });
@@ -35,7 +36,7 @@ function Login() {
       setAuthToken(token);
 
       const decoded = jwt_decode(token);
-      dispatch({ type: "OPEN_SOCKET" });
+      openSocket();
       dispatch({ type: "SET_USER", user: decoded });
       history.push("/chat-menu");
     }
